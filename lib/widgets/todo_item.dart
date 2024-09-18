@@ -9,9 +9,9 @@ class ToDoItem extends StatelessWidget {
 
   const ToDoItem(
       {Key? key,
-      required this.todo,
-      required this.onToDoChanged,
-      required this.onDeleteItem,})
+        required this.todo,
+        required this.onToDoChanged,
+        required this.onDeleteItem,})
       : super(key: key);
 
   @override
