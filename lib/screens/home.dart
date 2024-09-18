@@ -30,10 +30,9 @@ class _HomeState extends State<Home> {
       body: Stack(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 15,
-            ),
+            padding: MediaQuery.of(context).size.width > 600
+                ? const EdgeInsets.symmetric(horizontal: 20, vertical: 15)
+                : const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Column(
               children: [
                 searchBox(),
@@ -151,7 +150,7 @@ class _HomeState extends State<Home> {
   void _addToDoItem(String toDo){
     setState(() {
       todosList.add(ToDo(id: DateTime.now().microsecondsSinceEpoch.toString(),
-          todoText: toDo,
+          todoText: toDo, dueDate: '',
       ));
     });
     _todoController.clear();
@@ -176,7 +175,6 @@ class _HomeState extends State<Home> {
 
   Widget searchBox() {
     return Container(
-      //padding: EdgeInsets.symmetric(vertical: 15),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
