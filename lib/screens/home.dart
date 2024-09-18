@@ -31,10 +31,9 @@ class _HomeState extends State<Home> {
       body: Stack(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 15,
-            ),
+            padding: MediaQuery.of(context).size.width > 600
+                ? const EdgeInsets.symmetric(horizontal: 20, vertical: 15)
+                : const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Column(
               children: [
                 searchBox(),
@@ -109,6 +108,7 @@ class _HomeState extends State<Home> {
                   child: Text(
                     '+',
                     style: TextStyle(
+                      color: Colors.white,
                       fontSize: 40,
                     ),
                   ),
