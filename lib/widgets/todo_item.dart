@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../model/todo.dart';
 import '../constants/colors.dart';
 
@@ -7,20 +8,22 @@ class ToDoItem extends StatelessWidget {
   final onToDoChanged;
   final onDeleteItem;
 
-  const ToDoItem(
-      {Key? key,
-        required this.todo,
-        required this.onToDoChanged,
-        required this.onDeleteItem,})
-      : super(key: key);
+  const ToDoItem({
+    Key? key,
+    required this.todo,
+    required this.onToDoChanged,
+    required this.onDeleteItem,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Format the date to dd-MM-yyyy
+    String formattedDate = DateFormat('dd-MM-yyyy').format(todo.todoDate);
+
     return Container(
       margin: EdgeInsets.only(bottom: 20),
       child: ListTile(
         onTap: () {
-          //print('clicked on todo item');
           onToDoChanged(todo);
         },
         shape: RoundedRectangleBorder(
@@ -40,6 +43,11 @@ class ToDoItem extends StatelessWidget {
             decoration: todo.isDone ? TextDecoration.lineThrough : null,
           ),
         ),
+        subtitle: Text('Date: $formattedDate', // Display the formatted date
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.grey,
+            )),
         trailing: Container(
           padding: EdgeInsets.all(0),
           margin: EdgeInsets.symmetric(vertical: 12),
@@ -54,7 +62,6 @@ class ToDoItem extends StatelessWidget {
             iconSize: 18,
             icon: Icon(Icons.delete),
             onPressed: () {
-              //print('Clicked on delete icon');
               onDeleteItem(todo.id);
             },
           ),
